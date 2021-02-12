@@ -36,7 +36,7 @@ function waitAndRun ({ start, url, runFn }) {
   const server = execa(start, { shell: true, stdio: 'inherit' })
   let serverStopped
 
-  function stopServer () {
+  function stopServer (arg) {
     debug('getting child processes')
     if (!serverStopped) {
       serverStopped = true
@@ -60,6 +60,7 @@ function waitAndRun ({ start, url, runFn }) {
         .then(() => {
           debug('stopping server')
           server.kill()
+          return arg
         })
     }
   }
