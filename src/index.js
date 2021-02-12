@@ -81,7 +81,7 @@ function waitAndRun ({ start, url, runFn }) {
       strictSSL: !isInsecure(),
       log: isDebug(),
       headers: {
-        'Accept': 'text/html, application/json, text/plain, */*'
+        Accept: 'text/html, application/json, text/plain, */*'
       }
     }
     debug('wait-on options %o', options)
@@ -119,7 +119,12 @@ function startAndTest ({ services, test }) {
   }
 
   if (services.length === 1) {
-    const runTests = runTheTests(test)
+    let runTests
+    if (typeof test === 'string') {
+      runTests = runTheTests(test)
+    } else if (typeof test === 'function') {
+      runTests = (...args) => test(...args)
+    }
     debug('single service "%s" to run and test', services[0].start)
     return waitAndRun({
       start: services[0].start,
