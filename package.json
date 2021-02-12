@@ -1,7 +1,7 @@
 {
   "name": "@mithjem/start-server-and-test",
   "description": "Starts server, waits for URL, then runs test command; when the tests end, shuts down server",
-  "version": "0.0.0-development",
+  "version": "0.0.1-development",
   "author": "Gleb Bahmutov <gleb.bahmutov@gmail.com>",
   "bugs": "https://github.com/mithjem/start-server-and-test/issues",
   "bin": {
